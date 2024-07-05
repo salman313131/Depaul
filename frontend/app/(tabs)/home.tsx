@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Text } from 'react-native';
 import Filters from '../../components/Filters';
 import ProgramCard from '../../components/ProgramCard';
 
@@ -53,7 +53,7 @@ const HomeScreen = () => {
   });
 
   return (
-    <View className="flex-1 p-4">
+    <View className="flex-1 p-4 mt-5">
       <Filters
         degree={degree}
         setDegree={setDegree}
@@ -62,6 +62,7 @@ const HomeScreen = () => {
         specialization={specialization}
         setSpecialization={setSpecialization}
       />
+      <Text className="text-2xl font-bold mb-5">Recommended Programs</Text>
       <FlatList
         data={filteredPrograms}
         renderItem={({ item }) => (

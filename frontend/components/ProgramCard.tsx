@@ -5,7 +5,7 @@ import ModuleCard from './ModuleCard';
 const ProgramCard = ({ title, modules }) => {
   return (
     <View className="mb-5">
-      <Text className="text-2xl font-bold mb-2">{title}</Text>
+      <Text className="text-xl mb-2">{title}</Text>
       <FlatList
         horizontal
         data={modules}
