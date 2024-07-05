@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { View, FlatList, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import Filters from '../../components/Filters';
 import ProgramCard from '../../components/ProgramCard';
+import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 const HomeScreen = () => {
   // from academic interests
@@ -54,6 +55,19 @@ const HomeScreen = () => {
 
   return (
     <View className="flex-1 p-4 mt-5">
+      <View className="flex-row justify-between items-center mb-4">
+          <TouchableOpacity className="p-2">
+            <Ionicons name="menu" size={24} />
+          </TouchableOpacity>
+          <View className="flex-row">
+            <TouchableOpacity className="p-2 mr-2">
+              <FontAwesome name="search" size={24} />
+            </TouchableOpacity>
+            <TouchableOpacity className="p-2">
+              <MaterialIcons name="notifications" size={24} />
+            </TouchableOpacity>
+          </View>
+        </View>
       <Filters
         degree={degree}
         setDegree={setDegree}
