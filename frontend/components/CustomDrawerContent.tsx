@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
 
-const CustomDrawerContent = ({ closeDrawer }) => {
+const CustomDrawerContent = ({ navigation }) => {
   const [housingExpanded, setHousingExpanded] = useState(false);
   const [campusHousingExpanded, setCampusHousingExpanded] = useState(false);
-  const [campusMealsExpanded, setCampusMealsExpanded] = useState(false);
-  const navigation = useNavigation();
+  //const navigation = useNavigation();
 
   const handleNavigation = (screen) => {
-    //closeDrawer();
     navigation.navigate(screen);
   };
 
   return (
     <View className="flex-1 p-4 bg-white">
-      <TouchableOpacity onPress={() => closeDrawer()} className="my-6 self-end">
+      <TouchableOpacity onPress={() => navigation.closeDrawer()} className="my-6 self-end">
         <Ionicons name="close-circle-outline" size={28} className="text-gray-600" />
       </TouchableOpacity>
       <TouchableOpacity onPress={() => handleNavigation('Campus')} className="flex-row justify-between items-center my-2">

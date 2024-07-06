@@ -8,7 +8,7 @@ import Filters from '../../components/Filters';
 import ProgramCard from '../../components/ProgramCard';
 import CustomDrawerContent from '../../components/CustomDrawerContent';
 
-import CampusScreen from '../screens/campus';
+import CampusScreen from './(drawer)/campus';
 // add other screens
 
 const Drawer = createDrawerNavigator();
