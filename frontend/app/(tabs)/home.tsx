@@ -1,16 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { View, FlatList, Text, TouchableOpacity } from 'react-native';
-import Filters from '../../components/Filters';
-import ProgramCard from '../../components/ProgramCard';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { Ionicons, FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
-const HomeScreen = () => {
+import Filters from '../../components/Filters';
+import ProgramCard from '../../components/ProgramCard';
+import CustomDrawerContent from '../../components/CustomDrawerContent';
+
+import CampusScreen from '../screens/campus';
+// add other screens
+
+const Drawer = createDrawerNavigator();
+
+const DrawerNavigator = () => (
+  <Drawer.Navigator
+    drawerContent={(props) => <CustomDrawerContent {...props} />}
+    screenOptions={{
+      headerShown: false,
+      drawerStyle: {
+        width: '90%',
+      },
+    }}
+  >
+    <Drawer.Screen name="HomeContent" component={HomeScreenContent} />
+    <Drawer.Screen name="Campus" component={CampusScreen} />
+    {/* Add other screens */}
+  </Drawer.Navigator>
+);
+
+const HomeScreenContent = () => {
   // from academic interests
   const [degree, setDegree] = useState('Bachelors');
   const [program, setProgram] = useState('Computer Science');
   const [specialization, setSpecialization] = useState('Artificial Intelligence');
-
-  // create a useEffect to get this data from backend
 
   // dummy data
   const programs = [
@@ -53,21 +76,23 @@ const HomeScreen = () => {
     return true;
   });
 
+  const navigation = useNavigation();
+
   return (
     <View className="flex-1 p-4 mt-5">
       <View className="flex-row justify-between items-center mb-4">
-          <TouchableOpacity className="p-2">
-            <Ionicons name="menu" size={24} />
+        <TouchableOpacity className="p-2" onPress={() => navigation.openDrawer()}>
+          <Ionicons name="menu" size={24} />
+        </TouchableOpacity>
+        <View className="flex-row">
+          <TouchableOpacity className="p-2 mr-2">
+            <FontAwesome name="search" size={24} />
           </TouchableOpacity>
-          <View className="flex-row">
-            <TouchableOpacity className="p-2 mr-2">
-              <FontAwesome name="search" size={24} />
-            </TouchableOpacity>
-            <TouchableOpacity className="p-2">
-              <MaterialIcons name="notifications" size={24} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity className="p-2">
+            <MaterialIcons name="notifications" size={24} />
+          </TouchableOpacity>
         </View>
+      </View>
       <Filters
         degree={degree}
         setDegree={setDegree}
@@ -86,6 +111,12 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
       />
     </View>
+  );
+};
+
+const HomeScreen = () => {
+  return (
+    <DrawerNavigator />
   );
 };
 
