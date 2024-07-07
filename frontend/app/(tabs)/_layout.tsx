@@ -1,6 +1,7 @@
 import { Text, View, Image } from 'react-native'
 import { Tabs } from 'expo-router'
 import  icons from '@/constants/icons'
+import FloatingButton from '../../components/FloatingButton';
 
 const TabIcon = ({ icon, color, name, focused }) => {
     return (
@@ -22,6 +23,8 @@ const TabIcon = ({ icon, color, name, focused }) => {
 
 const TabsLayout = () => {
   return (
+    <View className="flex-1">
+
     <Tabs
     screenOptions={{
         tabBarShowLabel: false,
@@ -111,6 +114,8 @@ const TabsLayout = () => {
             }}
             />
     </Tabs>
+    <FloatingButton/>
+    </View>
   )
 }
 export default TabsLayout
